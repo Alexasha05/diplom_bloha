@@ -1,20 +1,33 @@
 // Функция для добавления товара в избранное
-function addToFavorites(productId) {
-    // Получаем текущий список избранных товаров из localStorage
+function addToFavorites(productId, button) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-    // Проверяем, есть ли уже такой товар в избранном
     if (!favorites.includes(productId)) {
         favorites.push(productId);
         localStorage.setItem('favorites', JSON.stringify(favorites));
+        button.textContent = '♥'; // Меняем значок на заполненное сердечко
+        button.classList.add('filled'); // Добавляем класс для стилизации
         alert(`Товар ${productId} добавлен в избранное`);
     } else {
         alert(`Товар ${productId} уже находится в избранном`);
-        return; // Прерываем выполнение, если товар уже в избранном
     }
 
-    // Обновляем отображение избранных товаров
-    displayFavorites();
+    displayFavorites(); // Обновляем раздел "Избранное"
+}
+
+// Функция для удаления товара из избранного
+function removeFromFavorites(productId, button) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    favorites = favorites.filter(id => id !== productId);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    if (button) {
+        button.textContent = '♡'; // Меняем значок на пустое сердечко
+        button.classList.remove('filled'); // Удаляем класс для стилизации
+    }
+
+    displayFavorites(); // Обновляем раздел "Избранное"
+    updateFavoriteButtons(); // Обновляем кнопки на странице "Главная"
 }
 
 // Функция для отображения избранных товаров
@@ -22,14 +35,12 @@ function displayFavorites() {
     const favoritesSection = document.getElementById('favorites');
     favoritesSection.innerHTML = ''; // Очищаем секцию
 
-    // Получаем список избранных товаров из localStorage
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
     if (favorites.length === 0) {
         favoritesSection.innerHTML = '<p>В избранном пока ничего нет.</p>';
     } else {
         favorites.forEach(productId => {
-            // Имитируем данные товара (в реальности это может быть API или другое хранилище)
             const productData = getMockProductData(productId);
 
             if (productData) {
@@ -40,7 +51,7 @@ function displayFavorites() {
                             <h2>${productData.title}</h2>
                             <p>${productData.description}</p>
                         </div>
-                        <button data-product-id="${productId}" class="remove-from-favorites">Удалить из избранного</button>
+                        <button data-product-id="${productId}" class="remove-from-favorites favorite-btn filled">♥</button>
                     </div>
                 `;
                 favoritesSection.innerHTML += productHtml;
@@ -51,20 +62,27 @@ function displayFavorites() {
         document.querySelectorAll('.remove-from-favorites').forEach(button => {
             button.addEventListener('click', function () {
                 const productId = this.getAttribute('data-product-id');
-                removeFromFavorites(productId);
+                removeFromFavorites(productId, this);
             });
         });
     }
 }
 
-// Функция для удаления товара из избранного
-function removeFromFavorites(productId) {
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    favorites = favorites.filter(id => id !== productId);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+// Функция для обновления состояния кнопок на странице "Главная"
+function updateFavoriteButtons() {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-    // Обновляем отображение избранных товаров
-    displayFavorites();
+    document.querySelectorAll('.product .favorite-btn').forEach(button => {
+        const productId = button.getAttribute('data-product-id');
+
+        if (favorites.includes(productId)) {
+            button.textContent = '♥';
+            button.classList.add('filled');
+        } else {
+            button.textContent = '♡';
+            button.classList.remove('filled');
+        }
+    });
 }
 
 // Моковые данные товаров (заменить на реальные данные)
@@ -78,14 +96,38 @@ function getMockProductData(productId) {
 }
 
 // Обработка кнопок "Добавить в избранное"
-document.querySelectorAll('.product button').forEach(button => {
+document.querySelectorAll('.product .favorite-btn').forEach(button => {
+    const productId = button.getAttribute('data-product-id');
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    // Проверяем, находится ли товар уже в избранном
+    if (favorites.includes(productId)) {
+        button.textContent = '♥';
+        button.classList.add('filled');
+    }
+
     button.addEventListener('click', function () {
-        const productId = this.getAttribute('data-product-id');
-        addToFavorites(productId);
+        if (button.classList.contains('filled')) {
+            removeFromFavorites(productId, button);
+        } else {
+            addToFavorites(productId, button);
+        }
     });
 });
 
-// При загрузке страницы отображаем избранные товары
+// При загрузке страницы или переключении между разделами
 window.addEventListener('load', function () {
-    displayFavorites();
+    displayFavorites(); // Обновляем раздел "Избранное"
+    updateFavoriteButtons(); // Обновляем кнопки на странице "Главная"
+});
+
+// Если используется pag_cyc.js для переключения между разделами
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function () {
+        setTimeout(() => {
+            if (window.location.hash === '#home') {
+                updateFavoriteButtons(); // Обновляем кнопки при переходе на главную
+            }
+        }, 0);
+    });
 });

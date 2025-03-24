@@ -1,9 +1,48 @@
+﻿/* Общий стиль для body */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    position: relative;
+    overflow-x: hidden;
 }
 
+/* Контейнер для фоновых фигур */
+#background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Размещаем за всеми другими элементами */
+    pointer-events: none; /* Отключаем взаимодействие с фигурами */
+}
+
+/* Базовый стиль для фигур */
+.shape {
+    position: absolute;
+    border-radius: 50%; /* По умолчанию круг */
+    opacity: 0.7;
+    animation: float 10s infinite ease-in-out alternate;
+}
+
+    /* Стиль для квадратов */
+    .shape.square {
+        border-radius: 0;
+    }
+
+/* Анимация для фигур */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-20px) rotate(360deg);
+    }
+}
+
+/* Остальные стили остаются без изменений */
 header {
     background-color: #4d79ff;
     color: white;
@@ -51,8 +90,19 @@ h1, h2 {
         height: auto;
     }
 
+.favorite-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc;
+}
 
+    .favorite-btn.filled {
+        color: red;
+    }
 
+/* Стили для товаров в разделе "Избранное" */
 .favorite-product {
     border: 1px solid #ddd;
     padding: 10px;
@@ -62,7 +112,7 @@ h1, h2 {
     align-items: center;
 }
 
-.favorite-product img {
-    max-width: 100px;
-    height: auto;
-}
+    .favorite-product img {
+        max-width: 100px;
+        height: auto;
+    }
