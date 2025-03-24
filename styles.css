@@ -42,40 +42,61 @@ body {
     }
 }
 
-/* Остальные стили остаются без изменений */
+/* Стили для header */
 header {
-    background-color: #4d79ff;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
+    display: flex; /* Flexbox для выравнивания элементов */
+    align-items: center; /* Вертикальное центрирование */
+    background-color: #4d79ff; /* Фоновый цвет */
+    color: white; /* Цвет текста */
+    padding: 0 20px; /* Отступы по горизонтали */
+    height: 70px; /* Фиксированная высота */
+    box-sizing: border-box; /* Учитываем padding в высоте */
 }
 
+/* Стили для логотипа */
 .logo {
-    width: 50px;
-    height: 50px;
-    background-color: white;
-    margin-right: 20px;
+    width: 60px; /* Ширина контейнера для логотипа */
+    height: 60px; /* Высота контейнера для логотипа */
+    display: flex; /* Flexbox для центрирования изображения */
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center; /* Горизонтальное центрирование */
+    background-color: white; /* Фон для контейнера логотипа */
+    margin-right: 20px; /* Отступ справа */
+    overflow: hidden; /* Обрезаем всё, что выходит за пределы контейнера */
 }
 
+    .logo img {
+        max-width: 100%; /* Изображение не выходит за границы контейнера */
+        max-height: 100%; /* Изображение не выходит за границы контейнера */
+        width: auto; /* Сохраняем пропорции */
+        height: auto; /* Сохраняем пропорции */
+        object-fit: contain; /* Гарантируем, что изображение помещается полностью */
+    }
+
+/* Стили для навигации */
 nav {
-    display: flex;
-    gap: 20px;
+    display: flex; /* Flexbox для размещения ссылок */
+    gap: 20px; /* Расстояние между ссылками */
 }
 
     nav a {
-        color: white;
-        text-decoration: none;
+        color: white; /* Цвет текста ссылок */
+        text-decoration: none; /* Убираем подчеркивание */
+        font-size: 16px; /* Размер шрифта */
+        line-height: 70px; /* Высота строки для вертикального центрирования */
     }
 
+/* Основной контент */
 main {
     padding: 20px;
 }
 
+/* Заголовки */
 h1, h2 {
     color: #333;
 }
 
+/* Стили для товаров */
 .product {
     border: 1px solid #ddd;
     padding: 10px;
@@ -90,6 +111,7 @@ h1, h2 {
         height: auto;
     }
 
+/* Кнопка "Добавить в избранное" */
 .favorite-btn {
     background: none;
     border: none;
