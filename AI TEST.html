@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Академия ТОП | Мерч</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+        <nav>
+            <a href="#home">Главная</a>
+            <a href="#favorites">Избранное</a>
+            <a href="#terms">Условия</a>
+            <a href="#about">О нас</a>
+        </nav>
+    </header>
+    <main id="home">
+        <h1>Главная</h1>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Товар 1">
+            <div>
+                <h2>Товар 1</h2>
+                <p>Описание товара 1</p>
+            </div>
+            <button data-product-id="1">Добавить в избранное</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Товар 2">
+            <div>
+                <h2>Товар 2</h2>
+                <p>Описание товара 2</p>
+            </div>
+            <button data-product-id="2">Добавить в избранное</button>
+        </div>
+    </main>
+    <main id="favorites" style="display: none;">
+        <h1>Избранное</h1>
+        <p>Здесь будут отображаться избранные товары.</p>
+    </main>
+    <main id="terms" style="display: none;">
+        <h1>Условия</h1>
+        <p>Условия возврата денег и прочая информация.</p>
+    </main>
+    <main id="about" style="display: none;">
+        <h1>О нас</h1>
+        <p>Академия "ТОП" с 2008 года готовит программистов, дизайнеров, инженеров и менеджеров. Мы предоставляем десятки направлений для детей и взрослых, гарантии трудоустройства, государственный диплом по окончании процесса обучения. На данный момент академия активна в 380 разных городах, имеет 72 тысячи студентов и 250 тысяч выпускников. На данном сайте вы можете приобрести рекламно-сувенирную продукцию нашей академии. Каждый заказ оформляется индивидуально и изготавливается сразу, после подтверждения оплаты.</p>
+    </main>
+    <script src="pag_cyc.js"></script>
+    <script src="fav.js"></script>
+    <!-- Скрипт pag_cyc.js выше  позволяет сделать сайт одностраничным, дабы пользователю не нужно было отдельно из раза в раз подргружать отдельные страницы
+        fav.js отвечает за систему избранных товаров и хранение списка в localstorage браузера (без утилизации cookie/баз данных) -->
+</body>
+</html>
