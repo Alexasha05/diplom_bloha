@@ -23,7 +23,7 @@
     </header>
     <main id="home">
         <h1>Главная</h1>
-        <div class="product">
+        <div class="product" data-product-id="1">
             <img src="https://via.placeholder.com/100" alt="Товар 1">
             <div>
                 <h2>Товар 1</h2>
@@ -32,7 +32,7 @@
             <button data-product-id="1" class="favorite-btn">♡</button>
         </div>
 
-        <div class="product">
+        <div class="product" data-product-id="2">
             <img src="https://via.placeholder.com/100" alt="Товар 2">
             <div>
                 <h2>Товар 2</h2>
@@ -43,7 +43,11 @@
     </main>
     <main id="favorites" style="display: none;">
         <h1>Избранное</h1>
-        <p>Здесь будут отображаться избранные товары.</p>
+    </main>
+    <main id="details" style="display: none;">
+        <h1>Детали товара</h1>
+        <div id="product-details"></div>
+        <button id="back-button">Назад</button>
     </main>
     <main id="terms" style="display: none;">
         <h1>Условия</h1>
@@ -53,8 +57,6 @@
         <h1>О нас</h1>
         <p>Академия "ТОП" с 2008 года готовит программистов, дизайнеров, инженеров и менеджеров. Мы предоставляем десятки направлений для детей и взрослых, гарантии трудоустройства, государственный диплом по окончании процесса обучения. На данный момент академия активна в 380 разных городах, имеет 72 тысячи студентов и 250 тысяч выпускников. На данном сайте вы можете приобрести рекламно-сувенирную продукцию нашей академии. Каждый заказ оформляется индивидуально и изготавливается сразу, после подтверждения оплаты.</p>
     </main>
-    <script src="pag_cyc.js"></script> <!-- Одностраничность сайта -->
-    <script src="fav.js"></script> <!-- JS системы избранного, реализованный с помощью localstorage -->
-    <script src="ranfig.js"></script> <!-- Случайные фигуры на заднике сайта -->
+    <script src="scripts.js"></script>
 </body>
 </html>
