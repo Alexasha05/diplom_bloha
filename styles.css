@@ -5,6 +5,8 @@ body {
     padding: 0;
     position: relative;
     overflow-x: hidden;
+    background-color: black; /* Черный фон сайта */
+    color: white; /* Белый текст по умолчанию */
 }
 
 /* Контейнер для фоновых фигур */
@@ -24,11 +26,13 @@ body {
     border-radius: 50%; /* По умолчанию круг */
     opacity: 0.7;
     animation: float 10s infinite ease-in-out alternate;
+    background-color: rgba(217, 24, 66, 0.5); /* Малиновый цвет */
 }
 
     /* Стиль для квадратов */
     .shape.square {
         border-radius: 0;
+        background-color: rgba(255, 82, 106, 0.5); /* Светло-малиновый цвет */
     }
 
 /* Анимация для фигур */
@@ -46,8 +50,8 @@ body {
 header {
     display: flex; /* Flexbox для выравнивания элементов */
     align-items: center; /* Вертикальное центрирование */
-    background-color: #4d79ff; /* Фоновый цвет */
-    color: white; /* Цвет текста */
+    background-color: #d91842; /* Красно-малиновый фон */
+    color: white; /* Белый текст */
     padding: 0 20px; /* Отступы по горизонтали */
     height: 70px; /* Фиксированная высота */
     box-sizing: border-box; /* Учитываем padding в высоте */
@@ -60,7 +64,6 @@ header {
     display: flex; /* Flexbox для центрирования изображения */
     align-items: center; /* Вертикальное центрирование */
     justify-content: center; /* Горизонтальное центрирование */
-    background-color: white; /* Фон для контейнера логотипа */
     margin-right: 20px; /* Отступ справа */
     overflow: hidden; /* Обрезаем всё, что выходит за пределы контейнера */
 }
@@ -76,27 +79,42 @@ header {
 /* Стили для навигации */
 nav {
     display: flex; /* Flexbox для размещения ссылок */
-    gap: 20px; /* Расстояние между ссылками */
+    gap: 10px; /* Расстояние между ссылками */
 }
 
     nav a {
-        color: white; /* Цвет текста ссылок */
+        color: white; /* Белый текст ссылок */
         text-decoration: none; /* Убираем подчеркивание */
         font-size: 16px; /* Размер шрифта */
-        line-height: 70px; /* Высота строки для вертикального центрирования */
+        padding: 10px 20px; /* Внутренние отступы для фона */
+        background-color: #F01842; /* Цвет фона кнопок */
+        border-radius: 5px; /* Закругление углов */
+        line-height: normal; /* Нормальная высота строки */
+        transition: background-color 0.3s ease; /* Плавное изменение цвета */
     }
+
+        nav a:hover {
+            background-color: #d91842; /* Темнее при наведении */
+        }
 
 /* Основной контент */
 main {
-    padding: 20px;
+    padding: 20px; /* Уже есть вертикальные и горизонтальные отступы */
+    background-color: white; /* Белый фон для текста */
+    color: #333; /* Темно-серый текст */
+    border-radius: 5px; /* Скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Легкая тень */
+    margin-top: 20px; /* Добавляем отступ сверху */
+    max-width: 1500px; /* Ограничиваем максимальную ширину контента */
+    margin: 0 auto; /* Центрируем контент по горизонтали */
 }
 
 /* Заголовки */
 h1, h2 {
-    color: #333;
+    color: #333; /* Темно-серый текст заголовков */
 }
 
-/* Стили для товаров */
+/* Стили для товаров на главной странице */
 .product {
     border: 1px solid #ddd;
     padding: 10px;
@@ -104,9 +122,30 @@ h1, h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white; /* Белый фон */
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); /* Черная тень */
+    border-radius: 5px; /* Скругленные углы */
 }
 
     .product img {
+        max-width: 100px;
+        height: auto;
+    }
+
+/* Стили для товаров в разделе "Избранное" */
+.favorite-product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Белый фон */
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); /* Черная тень */
+    border-radius: 5px; /* Скругленные углы */
+}
+
+    .favorite-product img {
         max-width: 100px;
         height: auto;
     }
@@ -124,17 +163,41 @@ h1, h2 {
         color: red;
     }
 
-/* Стили для товаров в разделе "Избранное" */
-.favorite-product {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Стили для кнопки "Назад" */
+#back-button {
+    background-color: #d91842; /* Красно-малиновый фон */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
 }
 
-    .favorite-product img {
-        max-width: 100px;
-        height: auto;
+    #back-button:hover {
+        background-color: #b31335; /* Темнее при наведении */
     }
+
+/* Стили для изображения в деталях товара */
+#product-details img {
+    max-width: 100%; /* Изображение не выходит за границы контейнера */
+    height: auto; /* Сохраняем пропорции */
+    display: block; /* Убираем лишние отступы */
+    margin: 0 auto; /* Центрируем изображение */
+    border-radius: 5px; /* Добавляем скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Легкая тень */
+}
+
+/* Стили для цены в карточках товаров */
+.product-actions {
+    display: flex;
+    align-items: center; /* Выравниваем цену и кнопку по вертикали */
+    gap: 10px; /* Расстояние между ценой и кнопкой */
+}
+
+.price {
+    font-size: 16px;
+    color: #333; /* Темно-серый цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+}
