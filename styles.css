@@ -1,41 +1,37 @@
-﻿/* Общий стиль для body */
+﻿/* Общий стиль */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    position: relative;
+    background-color: black;
+    color: white;
     overflow-x: hidden;
-    background-color: black; /* Черный фон сайта */
-    color: white; /* Белый текст по умолчанию */
 }
 
-/* Контейнер для фоновых фигур */
+/* Фоновые фигуры */
 #background-shapes {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Размещаем за всеми другими элементами */
-    pointer-events: none; /* Отключаем взаимодействие с фигурами */
+    z-index: -1;
+    pointer-events: none;
 }
 
-/* Базовый стиль для фигур */
 .shape {
     position: absolute;
-    border-radius: 50%; /* По умолчанию круг */
+    border-radius: 50%;
     opacity: 0.7;
     animation: float 10s infinite ease-in-out alternate;
-    background-color: rgba(217, 24, 66, 0.5); /* Малиновый цвет */
+    background-color: rgba(217, 24, 66, 0.5);
 }
 
-    /* Стиль для квадратов */
     .shape.square {
         border-radius: 0;
-        background-color: rgba(255, 82, 106, 0.5); /* Светло-малиновый цвет */
+        background-color: rgba(255, 82, 106, 0.5);
     }
 
-/* Анимация для фигур */
 @keyframes float {
     0% {
         transform: translateY(0) rotate(0deg);
@@ -46,106 +42,78 @@ body {
     }
 }
 
-/* Стили для header */
+/* Header */
 header {
-    display: flex; /* Flexbox для выравнивания элементов */
-    align-items: center; /* Вертикальное центрирование */
-    background-color: #d91842; /* Красно-малиновый фон */
-    color: white; /* Белый текст */
-    padding: 0 20px; /* Отступы по горизонтали */
-    height: 70px; /* Фиксированная высота */
-    box-sizing: border-box; /* Учитываем padding в высоте */
+    display: flex;
+    align-items: center;
+    background-color: #d91842;
+    color: white;
+    padding: 0 20px;
+    height: 70px;
+    box-sizing: border-box;
 }
 
-/* Стили для логотипа */
 .logo {
-    width: 60px; /* Ширина контейнера для логотипа */
-    height: 60px; /* Высота контейнера для логотипа */
-    display: flex; /* Flexbox для центрирования изображения */
-    align-items: center; /* Вертикальное центрирование */
-    justify-content: center; /* Горизонтальное центрирование */
-    margin-right: 20px; /* Отступ справа */
-    overflow: hidden; /* Обрезаем всё, что выходит за пределы контейнера */
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    overflow: hidden;
 }
 
     .logo img {
-        max-width: 100%; /* Изображение не выходит за границы контейнера */
-        max-height: 100%; /* Изображение не выходит за границы контейнера */
-        width: auto; /* Сохраняем пропорции */
-        height: auto; /* Сохраняем пропорции */
-        object-fit: contain; /* Гарантируем, что изображение помещается полностью */
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
     }
 
-/* Стили для навигации */
-nav {
-    display: flex; /* Flexbox для размещения ссылок */
-    gap: 10px; /* Расстояние между ссылками */
+/* Навигация */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #F01842;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-    nav a {
-        color: white; /* Белый текст ссылок */
-        text-decoration: none; /* Убираем подчеркивание */
-        font-size: 16px; /* Размер шрифта */
-        padding: 10px 20px; /* Внутренние отступы для фона */
-        background-color: #F01842; /* Цвет фона кнопок */
-        border-radius: 5px; /* Закругление углов */
-        line-height: normal; /* Нормальная высота строки */
-        transition: background-color 0.3s ease; /* Плавное изменение цвета */
+    nav a:hover {
+        background-color: #d91842;
     }
-
-        nav a:hover {
-            background-color: #d91842; /* Темнее при наведении */
-        }
 
 /* Основной контент */
 main {
-    padding: 20px; /* Уже есть вертикальные и горизонтальные отступы */
-    background-color: white; /* Белый фон для текста */
-    color: #333; /* Темно-серый текст */
-    border-radius: 5px; /* Скругленные углы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Легкая тень */
-    margin-top: 20px; /* Добавляем отступ сверху */
-    max-width: 1500px; /* Ограничиваем максимальную ширину контента */
-    margin: 0 auto; /* Центрируем контент по горизонтали */
+    padding: 20px;
+    background-color: white;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
-/* Заголовки */
 h1, h2 {
-    color: #333; /* Темно-серый текст заголовков */
+    color: #333;
 }
 
-/* Стили для товаров на главной странице */
-.product {
+/* Товары */
+.product, .favorite-product {
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white; /* Белый фон */
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); /* Черная тень */
-    border-radius: 5px; /* Скругленные углы */
+    background-color: white;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }
 
-    .product img {
-        max-width: 100px;
-        height: auto;
-    }
-
-/* Стили для товаров в разделе "Избранное" */
-.favorite-product {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white; /* Белый фон */
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); /* Черная тень */
-    border-radius: 5px; /* Скругленные углы */
-}
-
-    .favorite-product img {
+    .product img, .favorite-product img {
         max-width: 100px;
         height: auto;
     }
@@ -163,9 +131,9 @@ h1, h2 {
         color: red;
     }
 
-/* Стили для кнопки "Назад" */
+/* Кнопка "Назад" */
 #back-button {
-    background-color: #d91842; /* Красно-малиновый фон */
+    background-color: #d91842;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -176,28 +144,46 @@ h1, h2 {
 }
 
     #back-button:hover {
-        background-color: #b31335; /* Темнее при наведении */
+        background-color: #b31335;
     }
 
-/* Стили для изображения в деталях товара */
-#product-details img {
-    max-width: 100%; /* Изображение не выходит за границы контейнера */
-    height: auto; /* Сохраняем пропорции */
-    display: block; /* Убираем лишние отступы */
-    margin: 0 auto; /* Центрируем изображение */
-    border-radius: 5px; /* Добавляем скругленные углы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Легкая тень */
-}
-
-/* Стили для цены в карточках товаров */
+/* Стили для цены */
 .product-actions {
     display: flex;
-    align-items: center; /* Выравниваем цену и кнопку по вертикали */
-    gap: 10px; /* Расстояние между ценой и кнопкой */
+    align-items: center;
+    gap: 10px;
 }
 
 .price {
     font-size: 16px;
-    color: #333; /* Темно-серый цвет текста */
-    font-weight: bold; /* Жирный шрифт */
+    color: #333;
+    font-weight: bold;
+}
+
+/* Контейнер с изображениями в раскрытой карточке */
+.product-images {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+/* Увеличиваем размер изображений на карточках товаров */
+.product img,
+.favorite-product img {
+    max-width: 150px; /* Увеличиваем максимальную ширину */
+    height: auto; /* Сохраняем пропорции */
+}
+/* Увеличиваем размер изображений в разделе "Детали товара" */
+#product-details .product-images img {
+    width: 300px;
+    max-width: 500px; /* Устанавливаем максимальную ширину */
+    height: 300px; /* Сохраняем пропорции */
+    display: block; /* Убираем лишние отступы */
+    margin: 0 auto; /* Центрируем изображение */
+    border-radius: 10px; /* Добавляем скругление углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень для эффекта глубины */
+    object-fit: contain;
+    background-color: #f0f0f0;
+    flex-shrink: 0;
 }

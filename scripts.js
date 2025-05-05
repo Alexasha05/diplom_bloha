@@ -84,10 +84,10 @@ function displayFavorites() {
             if (productData) {
                 const productHtml = `
                     <div class="favorite-product" data-product-id="${productId}">
-                        <img src="${productData.image}" alt="${productData.title}">
+                        <img src="${productData.images[0]}" alt="${productData.title}">
                         <div>
                             <h2>${productData.title}</h2>
-                            <p>${productData.description}</p>
+                            <p>${productData.shortDescription}</p>
                         </div>
                         <div class="product-actions">
                             <span class="price">${productData.price} руб.</span>
@@ -129,13 +129,55 @@ function updateFavoriteButtons() {
 // Моковые данные товаров (заменить на реальные данные)
 function getMockProductData(productId) {
     const products = {
-        1: { image: 'pic/2.png', title: 'PowerBank 2600mah', description: 'Описание товара 1', price: 500 },
-        2: { image: 'https://via.placeholder.com/100', title: 'Powerbank 4000mah', description: 'Описание товара 2', price: 750 },
-        3: { image: 'https://via.placeholder.com/100', title: 'Powerbank 5000mah', description: 'Описание товара 3', price: 1200 },
-        4: { image: 'https://via.placeholder.com/100', title: 'Беспроводная зарядка', description: 'Описание товара 4', price: 900 },
-        5: { image: 'https://via.placeholder.com/100', title: 'Термос', description: 'Описание товара 5', price: 600 },
-        6: { image: 'https://via.placeholder.com/100', title: 'Подставка под телефон', description: 'Описание товара 6', price: 850 },
-        7: { image: 'https://via.placeholder.com/100', title: 'Мультитул', description: 'Описание товара 7', price: 1100 },
+        1: {
+            images: ['img/1.jpg'],
+            title: 'PowerBank 2600mah',
+            shortDescription: 'Переносной аккумулятор вместительностью 2600mAh.',
+            fullDescription: 'Компактный PowerBank емкостью 2600mAh, идеально подходит для зарядки смартфона в дороге.',
+            price: 500
+        },
+        2: {
+            images: ['img/2.png'],
+            title: 'Powerbank 4000mah',
+            shortDescription: 'Переносной аккумулятор вместительностью 4000mAh.',
+            fullDescription: 'Удобный PowerBank емкостью 4000mAh с индикатором заряда.',
+            price: 750
+        },
+        3: {
+            images: ['img/3.jpg'],
+            title: 'Powerbank 5000mah',
+            shortDescription: 'Переносной аккумулятор вместительностью 5000mAh.',
+            fullDescription: 'Мощный PowerBank емкостью 5000mAh, способен зарядить планшет или телефон.',
+            price: 1200
+        },
+        4: {
+            images: ['img/chrg/1.jpg', 'img/chrg/2.jpg'],
+            title: 'Беспроводная зарядка',
+            shortDescription: 'Устройство для беспроводной зарядки.',
+            fullDescription: 'Современное устройство для беспроводной зарядки смартфонов с поддержкой стандарта Qi.',
+            price: 900
+        },
+        5: {
+            images: ['img/trm/trm.jpeg'],
+            title: 'Термос',
+            shortDescription: 'Термос для горячих напитков.',
+            fullDescription: 'Вместительный термос объемом 500ml с двойными стенками, сохраняет тепло до 12 часов.',
+            price: 600
+        },
+        6: {
+            images: ['img/pod/1.jpeg', 'img/pod/2.jpeg'],
+            title: 'Подставка под телефон',
+            shortDescription: 'Деревянная подставка под телефон.',
+            fullDescription: 'Элегантная деревянная подставка для телефона, совместима с большинством моделей.',
+            price: 850
+        },
+        7: {
+            images: ['img/multi/1.jpg', 'img/multi/2.jpg'],
+            title: 'Мультитул',
+            shortDescription: 'Карманный мультитул.',
+            fullDescription: 'Компактный мультитул с ножом, отверткой, пилой и другими инструментами.',
+            price: 1100
+        },
     };
     return products[productId];
 }
@@ -212,10 +254,12 @@ function showProductDetails(productId) {
     // Заполняем данные о товаре
     const detailsSection = document.getElementById('product-details');
     detailsSection.innerHTML = `
-        <img src="${productData.image}" alt="${productData.title}">
         <h2>${productData.title}</h2>
         <p><strong>${productData.price} руб.</strong></p>
-        <p>${productData.description}</p>
+        <p>${productData.fullDescription}</p>
+        <div class="product-images">
+            ${productData.images.map(image => `<img src="${image}" alt="${productData.title}">`).join('')}
+        </div>
     `;
 
     // Показываем раздел с деталями товара
@@ -245,16 +289,16 @@ function displayProducts() {
         if (productData) {
             // Заполняем изображение
             const imgElement = productElement.querySelector('img');
-            imgElement.src = productData.image;
+            imgElement.src = productData.images[0]; // Берем первое изображение из массива
             imgElement.alt = productData.title;
 
             // Заполняем название
             const titleElement = productElement.querySelector('h2');
             titleElement.textContent = productData.title;
 
-            // Заполняем описание
+            // Заполняем краткое описание
             const descriptionElement = productElement.querySelector('p');
-            descriptionElement.textContent = productData.description;
+            descriptionElement.textContent = productData.shortDescription;
 
             // Заполняем цену
             const priceElement = productElement.querySelector('.price');
