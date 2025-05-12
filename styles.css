@@ -94,6 +94,7 @@ main {
     margin-top: 20px;
     max-width: 1500px;
     margin: 0 auto;
+    line-height: 1.5;
 }
 
 h1, h2 {
@@ -102,20 +103,36 @@ h1, h2 {
 
 /* Товары */
 .product, .favorite-product {
-    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 20px;
     padding: 10px;
     margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border: 1px solid #ddd;
     background-color: white;
     box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 }
 
     .product img, .favorite-product img {
-        max-width: 100px;
-        height: auto;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        background-color: #f0f0f0;
+        border-radius: 8px;
+    }
+
+.product-info, .favorite-product-info {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+    .product-info h2, .favorite-product-info h2 {
+        margin: 0;
+    }
+
+    .product-info p, .favorite-product-info p {
+        margin: 10px 0 0;
     }
 
 /* Кнопка "Добавить в избранное" */
@@ -148,7 +165,7 @@ h1, h2 {
     }
 
 /* Стили для цены */
-.product-actions {
+.product-actions, .favorite-product-actions {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -160,30 +177,29 @@ h1, h2 {
     font-weight: bold;
 }
 
-/* Контейнер с изображениями в раскрытой карточке */
-.product-images {
-    display: flex;
-    gap: 20px;
+/* Секция "Детали товара" */
+#details {
+    padding: 20px;
+    background-color: white;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
-    overflow-x: auto;
-    padding-bottom: 10px;
+    max-width: 1500px;
+    margin: 0 auto;
 }
-/* Увеличиваем размер изображений на карточках товаров */
-.product img,
-.favorite-product img {
-    max-width: 150px; /* Увеличиваем максимальную ширину */
-    height: auto; /* Сохраняем пропорции */
+
+/* Стили для изображений в секции "Детали товара" */
+#product-details .product-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Расстояние между изображениями */
 }
-/* Увеличиваем размер изображений в разделе "Детали товара" */
-#product-details .product-images img {
-    width: 300px;
-    max-width: 500px; /* Устанавливаем максимальную ширину */
-    height: 300px; /* Сохраняем пропорции */
-    display: block; /* Убираем лишние отступы */
-    margin: 0 auto; /* Центрируем изображение */
-    border-radius: 10px; /* Добавляем скругление углов */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавляем тень для эффекта глубины */
-    object-fit: contain;
-    background-color: #f0f0f0;
-    flex-shrink: 0;
-}
+
+    #product-details .product-images img {
+        max-width: 100%; /* Изображение будет масштабироваться до ширины контейнера */
+        height: auto; /* Сохраняет пропорции изображения */
+        margin-bottom: 10px; /* Поля между изображениями */
+        border-radius: 8px; /* Опционально: добавляет скругленные углы */
+        object-fit: cover; /* Обрезает изображение, сохраняя пропорции */
+    }
