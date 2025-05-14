@@ -115,7 +115,7 @@ h1, h2 {
 }
 
     .product img, .favorite-product img {
-        width: 150px;
+        width: auto;
         height: 150px;
         object-fit: cover;
         background-color: #f0f0f0;
@@ -194,12 +194,15 @@ h1, h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 10px; /* Расстояние между изображениями */
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
 }
 
     #product-details .product-images img {
-        max-width: 100%; /* Изображение будет масштабироваться до ширины контейнера */
-        height: auto; /* Сохраняет пропорции изображения */
-        margin-bottom: 10px; /* Поля между изображениями */
-        border-radius: 8px; /* Опционально: добавляет скругленные углы */
+        width: auto; /* Устанавливаем фиксированный размер изображений */
+        height: 250px;
         object-fit: cover; /* Обрезает изображение, сохраняя пропорции */
+        margin: 10px; /* Добавляем отступ между изображениями */
+        border-radius: 8px; /* Опционально: добавляет скругленные углы */
+        display: inline-block; /* Отображаем изображения в строку */
     }
